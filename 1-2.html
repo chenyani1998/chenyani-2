@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container {
+            background-color: blanchedalmond;
+            width: 450px;
+        }
+
+        .input_1 {
+            background-color: lightsteelblue;
+            width: 50px;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="line">
+        <input id="input1" class="input_1" placeholder="类型" onchange="change_type(1)"><input class="input_1" placeholder="单价">
+        <button id="1" onclick="change_down(1)">-</button><span class="inline" id="id-num1">0</span><button onclick="change_up(1)">+</button>
+    </div>
+
+</div>
+<div class="container">
+    <div class="line">
+        <input id="input2" class="input_1" placeholder="类型" onchange="change_type(2)"><input class="input_1" placeholder="单价">
+        <button id="2" onclick="change_down(2)">-</button><span class="inline" id="id-num2">0</span><button onclick="change_up(2)">+</button>
+    </div>
+
+</div>
+<div class="container">
+    <div class="line">
+        <input id="input3" class="input_1" placeholder="类型" onchange="change_type(3)"><input class="input_1" placeholder="单价">
+        <button id="3" onclick="change_down(3)">-</button><span class="inline" id="id-num3">0</span><button onclick="change_up(3)">+</button>
+    </div>
+    <div id="id-output1"></div><div id="id-type1"></div>
+    <div id="id-output2"></div><div id="id-type2"></div>
+    <div id="id-output3"></div><div id="id-type3"></div>
+</div>
+<script>
+    const e = function(selector) {
+        let element = document.querySelector(selector)
+        if (element === null) {
+            let s = `element not found, selector ${selector} error`
+            alert(s)
+            return null
+        } else {
+            return element
+        }
+    }
+    const change_down = function(n) {
+        let s = e(`#id-num${n}`)
+        let result = e(`#id-output${n}`)
+        let num = Number(s.innerHTML)
+        if (num > 0) {
+            s.innerHTML = `${num - 1}`
+            result.innerHTML = s.innerHTML
+        } else {
+            s.innerHTML = '0'
+            result.innerHTML = s.innerHTML
+        }
+
+    }
+    const change_up = function(n) {
+        let result = e(`#id-output${n}`)
+        let s = e(`#id-num${n}`)
+        let num = Number(s.innerHTML)
+        s.innerHTML = `${num + 1}`
+        result.innerHTML = s.innerHTML
+
+    }
+    const change_type = function(n) {
+        let result = e(`#id-type${n}`)
+        let s = e(`#input${n}`)
+        result.innerHTML = s.value
+    }
+
+</script>
+</body>
+</html>
